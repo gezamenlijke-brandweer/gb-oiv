@@ -1,0 +1,12 @@
+WITH DubbeleRijen AS (
+    SELECT 
+        id,
+        ROW_NUMBER() OVER (PARTITION BY geom ORDER BY id) AS rn
+    FROM bereikbaarheidskaart.waterwinning
+)
+DELETE FROM bereikbaarheidskaart.waterwinning
+WHERE id IN (
+    SELECT id
+    FROM DubbeleRijen
+    WHERE rn > 1
+);
