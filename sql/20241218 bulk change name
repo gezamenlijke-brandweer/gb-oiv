@@ -1,0 +1,3 @@
+UPDATE bereikbaarheidskaart.blusmiddel 
+SET omschrijving = 'blusmonitor'
+WHERE omschrijving = 'blusmonitor gb';
